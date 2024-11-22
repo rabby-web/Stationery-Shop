@@ -1,23 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { TOrder } from './order.interface';
-// import { Order } from './order.model';
 
-// const createOrder = async (payload: TOrder): Promise<TOrder> => {
-
-//   const { product, quantity } = payload;
-//   console.log(product, quantity);
-
-//   const result = await Order.create(payload);
-
-//   return result;
-// };
-
-// export const orderService = {
-//   createOrder,
-// };
 import { Product } from '../product/product.model';
 import { TOrder } from './order.interface';
-import { Order } from './order.model';// Assuming Product model manages inventory
+import { Order } from './order.model'; // Assuming Product model manages inventory
 
 const createOrder = async (payload: TOrder): Promise<any> => {
   const { email, product: productId, quantity, totalPrice } = payload;
@@ -61,6 +46,38 @@ const createOrder = async (payload: TOrder): Promise<any> => {
   };
 };
 
+// revenue
+const revenueOrder = async () => {
+  const revenueResult = await Order.aggregate([
+    {
+      $lookup: {
+        from: 'products', 
+        localField: 'product', 
+        foreignField: '_id', 
+        as: 'productInfo',
+      },
+    },
+   
+    {
+      $unwind: '$productInfo',
+    },
+    {
+      $addFields: {
+        orderRevenue: { $multiply: ['$productInfo.price', '$quantity'] },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        totalRevenue: { $sum: '$orderRevenue' },
+      },
+    },
+  ]);
+
+  return revenueResult[0]?.totalRevenue || 0;
+};
+
 export const orderService = {
   createOrder,
+  revenueOrder,
 };
