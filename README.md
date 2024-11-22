@@ -30,3 +30,22 @@ A RESTful API built with Express, TypeScript, and MongoDB (Mongoose) to manage p
    ```bash
    git clone <repository_url>
    cd stationery-shop-api
+   ```
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+3. **Set Up Environment Variables .env**
+   ```bash
+   MONGODB_URI=<your_mongo_connection_string>
+   PORT=3000
+   ```
+4. **Set Up Environment Variables .env**
+   ```bash
+   MONGODB_URI=<your_mongo_connection_string>
+   PORT=3000
+   ```
+5. **Set Up Environment Variables .env**
+   ```bash
+   npm run start:dev
+   ```
