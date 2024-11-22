@@ -1,19 +1,19 @@
+/* eslint-disable no-unused-vars */
+export enum TProductCategory {
+  Writing = 'Writing',
+  OfficeSupplies = 'Office Supplies',
+  ArtSupplies = 'Art Supplies',
+  Educational = 'Educational',
+  Technology = 'Technology',
+}
+
 export type TProduct = {
   name: string;
   brand: string;
   price: number;
-  category: string;
+  category: TProductCategory;
   description: string;
   quantity: number;
   inStock: boolean;
+  isDeleted: boolean;
 };
-
-// {
-//     "name": "Notebook",
-//     "brand": "Moleskine",
-//     "price": 15,
-//     "category": "Office Supplies",
-//     "description": "A high-quality notebook for professionals.",
-//     "quantity": 200,
-//     "inStock": true
-//   }
