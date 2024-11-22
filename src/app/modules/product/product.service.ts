@@ -20,8 +20,17 @@ const getSingleProduct = async (id: string) => {
   return result;
 };
 
+// update product
+const updateProduct = async (productId: string, updatedData: TProduct) => {
+  const result = await Product.findByIdAndUpdate(productId, updatedData, {
+    new: true,
+  });
+  return result;
+};
+
 export const productServices = {
   createProduct,
   getProduct,
   getSingleProduct,
+  updateProduct,
 };

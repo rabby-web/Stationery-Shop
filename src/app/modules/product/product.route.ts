@@ -10,5 +10,6 @@ router.post('/', productController.createProduct);
 router.get('/', productController.getAllProduct);
 // get with productId
 router.get('/:productId', productController.getSingleProduct);
-
+// update product
+router.put('/:productId', productController.updateProduct);
 export const ProductRoutes = router;
