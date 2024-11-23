@@ -5,6 +5,7 @@ import { TOrder } from './order.interface';
 import { Order } from './order.model'; // Assuming Product model manages inventory
 
 const createOrder = async (payload: TOrder): Promise<any> => {
+
   const { email, product: productId, quantity, totalPrice } = payload;
 
   // Fetch the product to check inventory
@@ -48,6 +49,7 @@ const createOrder = async (payload: TOrder): Promise<any> => {
 
 // revenue
 const revenueOrder = async () => {
+  
   const revenueResult = await Order.aggregate([
     {
       $lookup: {

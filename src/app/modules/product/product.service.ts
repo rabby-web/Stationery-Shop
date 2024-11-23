@@ -9,8 +9,16 @@ const createProduct = async (payload: TProduct): Promise<TProduct> => {
 };
 
 // get all product
-const getProduct = async () => {
-  const result = await Product.find();
+const getProduct = async (query: Record<string, unknown>) => {
+  let searchTerm = '';
+  if (query?.searchTerm) {
+    searchTerm = query?.searchTerm as string;
+  }
+  const result = await Product.find({
+    $or: ['name', 'brand', 'category'].map((field) => ({
+      [field]: { $regex: searchTerm, $options: 'i' },
+    })),
+  });
   return result;
 };
 
