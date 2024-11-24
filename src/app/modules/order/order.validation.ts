@@ -12,17 +12,17 @@ const orderValidationSchema = z.object({
   email: z
     .string()
     .trim()
-    .min(1, 'Email is required')
-    .email({ message: 'Invalid email type' }),
+    .min(1, 'email is required')
+    .email({ message: 'invalid email type' }),
   product: objectIdValidation,
   quantity: z
     .number()
-    .positive('Quantity must be a positive number')
-    .min(1, 'Quantity is required'),
+    .positive('quantity must be a positive number')
+    .min(1, 'quantity is required'),
   totalPrice: z
     .number()
-    .min(1, 'Total price is required')
-    .positive('Total price must be a positive number'),
+    .min(1, 'total price is required')
+    .positive('total price must be a positive number'),
 });
 
 export default orderValidationSchema;

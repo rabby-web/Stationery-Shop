@@ -10,15 +10,15 @@ const ProductCategoryEnum = z.enum([
 ]);
 
 const ProductValidationSchema = z.object({
-  name: z.string().trim().min(1, 'Product name is required'),
-  brand: z.string().trim().min(1, 'Brand name is required'),
+  name: z.string().trim().min(1, 'product name is required'),
+  brand: z.string().trim().min(1, 'brand name is required'),
   price: z
     .number()
-    .min(1, 'Price is Required')
-    .positive({ message: 'Price must be a positive number' }),
+    .min(1, 'price is Required')
+    .positive({ message: 'price must be a positive number' }),
   category: ProductCategoryEnum,
-  description: z.string().trim().min(1, 'Description is required'),
-  quantity: z.number().min(1, 'Quantity must be a positive number'),
+  description: z.string().trim().min(1, 'description is required'),
+  quantity: z.number().min(1, 'quantity must be a positive number'),
   inStock: z
     .boolean()
     .refine((value) => value === true, { message: 'inStock must be true' }),
